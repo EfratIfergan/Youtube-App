@@ -1,0 +1,16 @@
+p {
+    background-color: yellow;
+    // font-size: 1.5rem;
+    width: 200px;
+
+    /**Major Properties**/
+    overflow: hidden;
+    // line-height: 2rem;
+    height: 200px;
+    -webkit-box-orient: vertical;
+    display: block;
+    display: -webkit-box;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 9;
+}
