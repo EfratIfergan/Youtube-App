@@ -1,0 +1,68 @@
+<p-table [value]="products" [tableStyle]="{'min-width': '60rem'}">
+    <ng-template pTemplate="caption">
+        <div class="flex align-items-center justify-content-between">
+            Links
+            <p-button icon="pi pi-refresh"></p-button>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Name</th>
+            <th>Video</th>
+            <th>Iframe tag for embedding</th>
+            <th>Recommended videos</th>
+            <th>Edit</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product>
+        <tr>
+            <td class="w-2">
+                Name
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                </p>
+            </td>
+            <td class="w-3">
+                <img src="../../assets/img.webp" width="350" class="shadow-4" />
+            </td>
+            <td class="w-2">
+                <button (click)="copyToClipboard('hello world')" pButton pRipple type="button" label="Copy" class="p-button-outlined p-button-secondary" icon="pi pi-copy"></button>
+            </td>
+            <td class="w-3">
+                <div class="overflow-auto surface-overlay" style="height: 300px; width: 300px;">
+                    <p-listbox [options]="products" formControlName="selectedCity"></p-listbox>
+                </div>
+            </td>
+            <td class="w-2">
+                <button (click)="showDialog()" pButton type="button"  icon="pi pi-info-circle" label="Show"></button>
+                <!-- <button pButton type="button" label="More Info" class="p-button-outlined"></button> -->
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+        <div class="flex align-items-center justify-content-between">
+            <!-- In total there are {{products ? products.length : 0 }} products. -->
+        </div>
+    </ng-template>
+</p-table>
+
+<p-toast position="bottom-center" key="bc"></p-toast>
+
+<p-dialog header="Godfather I" [(visible)]="displayMaximizable" [modal]="true" [style]="{width: '50vw'}"
+    [maximizable]="true" [draggable]="false" [resizable]="false">
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+        magna aliqua.
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+        sint occaecat
+        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <ng-template pTemplate="footer">
+        <p-button icon="pi pi-check" (click)="displayMaximizable=false" label="Ok"
+            styleClass="p-button-text"></p-button>
+    </ng-template>
+</p-dialog>
