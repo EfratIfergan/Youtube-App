@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TableRecordComponent } from './table-record.component';
+import { VideoPlayerTableComponent } from './video-player-table.component';
 
 describe('TableRecordComponent', () => {
-  let component: TableRecordComponent;
-  let fixture: ComponentFixture<TableRecordComponent>;
+  let component: VideoPlayerTableComponent;
+  let fixture: ComponentFixture<VideoPlayerTableComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TableRecordComponent ]
+      declarations: [ VideoPlayerTableComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(TableRecordComponent);
+    fixture = TestBed.createComponent(VideoPlayerTableComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

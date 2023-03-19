@@ -1,0 +1,77 @@
+<p-table [value]="videoPlayerList" [tableStyle]="{'min-width': '60rem'}">
+    <ng-template pTemplate="caption">
+        <div class="flex align-items-center justify-content-between">
+            Video Player List
+            <p-button icon="pi pi-refresh" (click)="getVideoPlayerListByUid()"></p-button>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Title</th>
+            <th>Video</th>
+            <th>Iframe tag for embedding</th>
+            <th>Recommended videos</th>
+            <th>More description</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-video>
+        <tr>
+            <td class="w-2">
+                <div pTooltip={{video.title}} tooltipPosition="top"
+                    class="surface-overlay  white-space-nowrap overflow-hidden text-overflow-ellipsis font-bold"
+                    style="width:200px">
+                    {{video.title}}
+                </div>
+                <p class="ellipsis">{{video.fullDescription}}</p>
+            </td>
+            <td class="w-3">
+                <iframe [src]="getSanitizedURL(video)" id="inneriframe" scrolling="no" height="200" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen></iframe>
+            </td>
+            <td class="w-2">
+                <button (click)="copyToClipboard(video.iframeTag)" pButton pRipple type="button" label="Copy"
+                    class="p-button-outlined p-button-secondary" icon="pi pi-copy"></button>
+            </td>
+            <td class="w-3">
+                <div class="overflow-auto surface-overlay" style="height: 300px;">
+                    <ul class="list-none p-2">
+                        <li *ngFor="let relatedVideo of video.relatedVideos">
+                            <div class="surface-overlay p-1 mt-2 white-space-nowrap overflow-hidden text-overflow-ellipsis"
+                                style="width:250px;">
+                                <div pTooltip={{relatedVideo.title}} tooltipPosition="top"
+                                    class="surface-overlay  white-space-nowrap overflow-hidden text-overflow-ellipsis font-bold"
+                                    style="width:250px">
+                                    {{relatedVideo.title}}
+                                </div>
+                                <a href={{relatedVideo.link}} target="_blank"> {{relatedVideo.link}}</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </td>
+            <td class="w-2">
+                <button (click)="showDialog(video)" pButton type="button" icon="pi pi-info-circle"
+                    label="Open"></button>
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+        <div class="flex align-items-center justify-content-between">
+            In total there are {{videoPlayerList ? videoPlayerList.length : 0 }} Video Players.
+        </div>
+    </ng-template>
+</p-table>
+
+<p-toast position="bottom-center" key="bc"></p-toast>
+
+<p-dialog header={{selectedVideo.title}} [(visible)]="displayMaximizable" [modal]="true" [style]="{width: '50vw'}"
+    [maximizable]="true" [draggable]="false" [resizable]="false">
+    <div *ngIf="selectedVideo">
+        <p>{{selectedVideo.fullDescription}}</p>
+    </div>
+    <ng-template pTemplate="footer">
+        <p-button icon="pi pi-check" (click)="displayMaximizable=false" label="Ok"
+            styleClass="p-button-text"></p-button>
+    </ng-template>
+</p-dialog>
