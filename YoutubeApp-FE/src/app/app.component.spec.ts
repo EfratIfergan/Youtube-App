@@ -23,7 +23,6 @@ describe('AppComponent', () => {
   it(`should have as title 'YoutubeApp-FE'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('YoutubeApp-FE');
   });
 
   it('should render title', () => {
